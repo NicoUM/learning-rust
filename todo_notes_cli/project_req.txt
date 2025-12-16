@@ -1,0 +1,133 @@
+✅ Requerimientos del Proyecto: CLI de Notas en Rust
+🔹 1. Funcionalidades principales
+
+Agregar nota
+
+Comando: add <texto>
+
+Guarda una nueva nota con:
+
+id único (por ejemplo, incremental o UUID)
+
+texto
+
+fecha de creación
+
+Listar notas
+
+Comando: list
+
+Muestra todas las notas en formato legible:
+
+ID
+
+texto
+
+fecha de creación
+
+Eliminar nota
+
+Comando: delete <id>
+
+Elimina la nota con el ID especificado.
+
+Marcar nota como completada (opcional pero recomendado)
+
+Comando: done <id>
+
+Actualiza estado de la nota.
+
+🔹 2. Persistencia
+
+Las notas deben guardarse en un archivo local.
+
+Formatos permitidos:
+
+JSON (lo más sencillo)
+
+Opción: .json en una carpeta data/
+
+El programa debe:
+
+Leer las notas al iniciar.
+
+Guardarlas al modificar la lista.
+
+🔹 3. Interfaz por línea de comandos
+
+Usar la librería clap (o argh, o structopt).
+
+Debe soportar comandos como:
+
+notas add "Comprar pan"
+notas list
+notas delete 3
+notas done 2
+
+🔹 4. Estructura interna
+
+Modelo de nota
+
+struct Note {
+    id: u32,
+    text: String,
+    created_at: String,
+    done: bool,
+}
+
+
+Gestor de notas
+
+Carga desde JSON
+
+Guarda en JSON
+
+Funciones:
+
+add_note()
+
+list_notes()
+
+delete_note()
+
+mark_done()
+
+Módulo CLI
+
+Parseo de argumentos
+
+Llamadas a funciones del gestor
+
+🔹 5. Manejo de errores
+
+Archivo inexistente → crear uno nuevo.
+
+ID no encontrado → mensaje claro.
+
+JSON corrupto → regenerar base o avisar al usuario.
+
+Comandos invalidos → ayuda automática de clap.
+
+🔹 6. Requerimientos técnicos
+
+Rust 1.70+ (o la estable más reciente).
+
+Uso de crates:
+
+serde y serde_json
+
+clap
+
+chrono (opcional para fechas)
+
+🔹 7. Extras opcionales (si quieres potenciarlo)
+
+Filtros: list --done o list --pending
+
+Colores en la terminal (crates: colored)
+
+Autogenerar IDs con UUID
+
+Exportar notas a CSV
+
+Sincronización con archivo encriptado
